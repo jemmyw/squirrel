@@ -287,4 +287,11 @@ class SquirrelTest < Test::Unit::TestCase
     query = User.find(:query){ posts.body == posts.tags.name }
     assert_equal ["((posts.body = tags.name))"], query.to_find_conditions
   end
+
+  def test_conditions_can_be_rvalues_when_operator_is_gt
+    query = User.find(:query) do
+      id > company_id
+    end
+    assert_equal ["(users.id > users.company_id)"], query.to_find_conditions
+  end
 end

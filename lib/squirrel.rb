@@ -505,7 +505,7 @@ module Squirrel
         when :contains   then    [ "LIKE",    arg_format,        values.map{|v| "%#{v}%" } ]
         else
           case operand
-          when Condition then    [ op,        oprand.full_name,  [] ] 
+          when Condition then    [ op,        operand.full_name,  [] ]
           else                   [ op,        arg_format,        values ]
           end
         end		
